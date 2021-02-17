@@ -62,27 +62,29 @@ namespace Mr.bot
             var message = messageParam as SocketUserMessage;
             Console.WriteLine("{0} {1}:{2}", message.Channel.Name, message.Author.Username, message);
 
-            // コメントがユーザーかBotかの判定
-            if (message?.Author.IsBot ?? true)
-            {
+            if (message == null)
                 return;
-            }
 
-            // Botコマンドかどうか判定（判定条件は接頭辞"!"付き発言 or Botアカウントへのメンション）
-            int argPos = 0;
-            if (!(message.HasCharPrefix('!', ref argPos) || message.HasMentionPrefix(Client.CurrentUser, ref argPos)))
-            {
+            if (message.Author.IsBot)
                 return;
-            }
 
             // 実行
             var context = new CommandContext(Client, message);
-            var result = await Commands.ExecuteAsync(context, argPos, Provider);
+            var CommandContext = message.Content;
 
-            //実行できなかった場合
-            if (!result.IsSuccess)
+            if (CommandContext == "グー" | CommandContext == "ぐー")
             {
-                await context.Channel.SendMessageAsync(result.ErrorReason);
+                await message.Channel.SendMessageAsync("パー"); 
+            }
+
+            if (CommandContext == "チョキ" | CommandContext == "ちょき")
+            {
+                await message.Channel.SendMessageAsync("グー");
+            }
+
+            if (CommandContext == "パー" | CommandContext == "ぱー")
+            {
+                await message.Channel.SendMessageAsync("チョキ");
             }
         }
     }

@@ -87,7 +87,6 @@
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
     <Compile Include="MainLogic.cs" />
-    <Compile Include="PingPong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
