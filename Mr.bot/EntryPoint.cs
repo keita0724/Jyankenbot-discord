@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Mr.bot
 {
-    class Program
+    class EntryPoint
     {
-        static void Main(string[] args)
-        {
-        }
+        static void Main() => new MainLogic().MainAsync().GetAwaiter().GetResult();
     }
 }
